@@ -2,7 +2,7 @@
 	color: red;
 }
 
-.ng-invalid{
+input.ng-invalid.ng-dirty, select.ng-invalid.ng-dirty{
 	border: 1px red solid;
 }
 
