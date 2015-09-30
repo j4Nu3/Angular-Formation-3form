@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- on déclare notre app ici -->
+<html lang="en" ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJs Course - IKNSA - Formitude</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/app.css">
+  </head>
+
+  <body>
+    <!-- Page Content -->
+    <div class="jumbotron col-xs-5 col-xs-offset-3">
+    <h2>C'est l'histoire de 3 forms</h2>
+      <ng-view></ng-view>
+
+      <hr>
+      <ul>
+      <li>
+      <a href="#/form1">Form-idable</a>
+      </li>
+      <li>
+      <a href="#/form2">Form-ateur</a>
+      </li>
+      <li>
+      <a href="#/form3">Form-age de brebis</a>
+      </li>
+      </ul>
+    </div>
+
+    <script src="js/angular.min.js"></script>
+    <!-- pour utiliser le routage -->
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

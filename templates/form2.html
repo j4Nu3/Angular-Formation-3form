@@ -1,0 +1,36 @@
+<div>
+	<label>search <input ng-model="searchtext"/></label>
+	<table id="searchtextresults">
+		<tr><th>Name</th><th>Phone</th></tr>
+		<tr ng-repeat="friend in friends | filter:searchtext | orderBy: 'name'">
+		  <td>{{friend.name}}</td>
+		  <td>{{friend.phone}}</td>
+		</tr>
+	</table>
+</div>
+<br>
+<div>
+	<form name="friendsForm" action="/" novalidate ng-submit="submitForm()" class="simple-form form-horizontal">
+		<div class="form-group row">
+			<label class="col-xs-3" for="name">Name:*</label>
+			<div class="col-xs-3 has-feedback">
+				<input class="form-control" type="text" id="name" ng-pattern="formulaire.name.regexp" name="name" ng-model="formulaire.name.valeur" required/>
+					<span ng-show="friendsForm.name.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					<span ng-show="friendsForm.name.$invalid" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+			</div>
+			<span  class="col-xs-5 error" ng-show="friendsForm.name.$error.required && friendsForm.name.$dirty">Your name is required.</span>
+			<span  class="col-xs-5 error" ng-show="friendsForm.name.$error.pattern && friendsForm.name.$dirty">Only letters are allowed.</span>
+		</div>
+		<div class="form-group row">
+			<label class="col-xs-3" for="tel">Tel:*</label>
+			<div class="col-xs-3 has-feedback">
+				<input class="form-control" type="text" ng-pattern="formulaire.tel.regexp" id="tel" name="tel" ng-model="formulaire.tel.valeur" required/>
+				<span ng-show="friendsForm.tel.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+				<span ng-show="friendsForm.tel.$invalid" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+			</div>
+			<span  class="col-xs-5 error" ng-show="friendsForm.tel.$error.required && friendsForm.tel.$dirty">Tel phone number is required.</span>
+			<span class="col-xs-5 error" ng-show="friendsForm.tel.$error.pattern && friendsForm.tel.$dirty">Tel phone number is not valid</span>
+		</div>
+		<button type="submit" class="btn btn-primary" ng-disabled="friendsForm.$invalid">Submit</button>
+	</form>
+</div>

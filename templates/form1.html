@@ -1,0 +1,33 @@
+<div>
+	<form name="form1" ng-submit="submitForm()" class="simple-form form-horizontal">
+		<div class="form-group row" ng-repeat="ch in champs">
+				<label class="col-xs-3" for="{{ ch.nom }}">{{ ch.nomlib }}:{{ ch.requis ? '*':'' }}</label>
+				<div class="col-xs-3 has-feedback" ng-if="ch.type=='input' && ch.requis">
+					<input class="form-control" type="text" id="{{ ch.nom }}" name="{{ ch.nom }}" ng-model="ch.valeur" ng-pattern="ch.validationtype=='regexp' ? ch.validation : ''" ng-change="{{ch.validationtype=='fonction' ? ch.validation : ''}}" required></input>
+					<span ng-show="form1.{{ ch.nom }}.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					<span ng-show="form1.{{ ch.nom }}.$invalid" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+				</div>
+				<div class="col-xs-3 has-feedback" ng-if="ch.type=='input' && !ch.requis">
+					<input class="form-control" type="text" id="{{ ch.nom }}" name="{{ ch.nom }}" ng-model="ch.valeur" ng-pattern="ch.validationtype=='regexp' ? ch.validation : ''" ng-change="{{ch.validationtype=='fonction' ? ch.validation : ''}}" required></input>
+					<span ng-show="form1.{{ ch.nom }}.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					<span ng-show="form1.{{ ch.nom }}.$invalid" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+				</div>
+				<div class="" ng-repeat="er in ch.errors">
+					<span  class="col-xs-5 error" ng-if="er.type=='required'" ng-show="form1.{{ ch.nom }}.$error.required && form1.{{ ch.nom }}.$dirty">Your {{ ch.nom }} is required.</span>
+					<span  class="col-xs-5 error" ng-if="er.type=='pattern'" ng-show="form1.{{ ch.nom }}.$error.pattern && form1.{{ ch.nom }}.$dirty">{{ er.texte }}</span>
+				</div>
+
+				<!-- <div class="col-xs-3 has-feedback" ng-if="ch.type=='input' && !ch.requis">
+					<input class="form-control" type="text" id="{{ ch.nom }}" name="{{ ch.nom }}" ng-model="ch.valeur" ng-pattern="ch.validationtype=='regexp' ? ch.validation : ''"></input>
+					<span ng-show="form1.{{ ch.nom }}.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+					<span ng-show="form1.{{ ch.nom }}.$invalid" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+				</div> -->
+				<!-- <div class="" ng-repeat="er in ch.errors">
+					<span  class="col-xs-5 error" ng-if="er.type=='required'" ng-show="form1.{{ ch.nom }}.$error.required && form1.{{ ch.nom }}.$dirty">Your {{ ch.nom }} is required.</span>
+					<span  class="col-xs-5 error" ng-if="er.type=='pattern'" ng-show="form1.{{ ch.nom }}.$error.pattern && form1.{{ ch.nom }}.$dirty">{{ er.texte }}</span>
+				</div> -->
+				<!-- <input class="form-control" type="text" id="{{ ch.nom }}" ng-pattern="{{ champs.{{ ch.nom }}.validationtype=='regexp' ? champs.{{ ch.nom }}.validation : '' }}" name="{{ ch.nom }}" ng-model="champs.{{ ch.nom }}.valeur" required/> -->
+			</div>
+			<button type="submit" class="btn btn-primary" ng-disabled="form1.$invalid">Submit</button>
+	</form>
+</div>
